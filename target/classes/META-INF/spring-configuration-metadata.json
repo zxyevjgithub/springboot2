@@ -1,0 +1,37 @@
+{
+  "groups": [
+    {
+      "name": "itmnogroup",
+      "type": "boot.pojo.ItmNoGroup",
+      "sourceType": "boot.pojo.ItmNoGroup"
+    }
+  ],
+  "properties": [
+    {
+      "name": "itmnogroup.amtptr",
+      "type": "java.util.HashMap<java.lang.String,java.lang.Integer>",
+      "sourceType": "boot.pojo.ItmNoGroup"
+    },
+    {
+      "name": "itmnogroup.evacmodel",
+      "type": "java.util.HashMap<java.lang.String,java.lang.String>",
+      "sourceType": "boot.pojo.ItmNoGroup"
+    },
+    {
+      "name": "itmnogroup.factor-eventmapping",
+      "type": "java.util.HashMap<java.lang.String,java.lang.String>",
+      "sourceType": "boot.pojo.ItmNoGroup"
+    },
+    {
+      "name": "itmnogroup.itmno-group",
+      "type": "java.util.HashMap<java.lang.String,java.lang.String>",
+      "sourceType": "boot.pojo.ItmNoGroup"
+    },
+    {
+      "name": "itmnogroup.name",
+      "type": "java.lang.String",
+      "sourceType": "boot.pojo.ItmNoGroup"
+    }
+  ],
+  "hints": []
+}

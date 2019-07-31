@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="include.XmtOrderMapper">
+    <insert id="addOrder" parameterType="include.XmtOrder">      
+       insert into xmtorder (order_id,cus_id,event_id,order_sts  ,time_stmp ) 
+       value(#{order_id},#{cus_id} , #{event_id}, #{order_sts} , #{time_stmp} )
+    </insert>
+    <select id="selectOrder"  resultType="include.XmtOrder">
+        select * from xmtorder 
+
+    </select>
+   <select id="selectORDone"  resultType="include.XmtOrder" parameterType="include.XmtEvent">
+        select * from xmtorder where order_id= #{order_id} 
+
+    </select>
+ 
+    <select  id="selectcount"  parameterType="include.XmtOrder"  resultType="Integer">
+        select count(*) from xmtorder where cus_id= #{cus_id}
+
+    </select>
+    
+    <select id="or0004" parameterType="include.XmtOrder" resultMap="myor0004">
+        select a.order_id,a.cus_id, a.event_id,a.order_sts ,a.time_stmp,
+               b.envet_id,b.st_date,b.ed_date,b.ename,b.eaddr,b.price,b.sts
+                     from xmtorder a , xmtevent b where 
+                     a.cus_id = #{cus_id} and a.event_id=b.envet_id
+    </select> 
+    <!--  colume 是数据库值  Propert 是bean值 -->  
+    <resultMap type="pojo.OR0004" id="myor0004">
+          <id      column="order_id"   property="order.order_id"/>
+          <result  column="cus_id"     property="order.cus_id"  />
+          <result  column="event_id"   property="order.event_id"  />
+          <result  column="order_sts"  property="order.order_sts"  />
+          <result  column="time_stmp"  property="order.time_stmp"  />
+              
+              <result column="envet_id"  	property="event.envet_id"/>
+              <result column="st_date"  property="event.st_date"/>
+              <result column="ed_date"  property="event.ed_date"/>
+              <result column="ename"  	property="event.ename"/>
+              <result column="eaddr"  	property="event.eaddr"/>
+             <result column="price"  	property="event.price"/>
+              <result column="sts"  	property="event.sts"/>
+    </resultMap>
+    
+    
+    
+    
+    
+    
+    
+    
+ 
+ </mapper>

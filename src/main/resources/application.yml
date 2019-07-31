@@ -1,0 +1,45 @@
+itmnogroup:
+  name:
+    aiparmcode
+  itmnoGroup:
+      G01:
+        20010100
+      G02:
+        20240100
+      G03:
+        50010100
+      G04:
+        26260102
+  amtptr:
+      A01:
+         0
+      A02:
+         0
+      A03:
+         0
+      A04:
+         0
+  factorEventmapping:
+      "001":
+         ZZ01
+      "010":
+         ZZ02
+
+  evacmodel:
+      ZZ01:
+         DN/CN/DG01A03/CG03A01
+      ZZ02:
+         DN/CG04A05
+spring:
+  redis:
+    host:
+       172.20.10.2
+    port:
+       6379
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mariadb://localhost:3306/xm001
+    driver-class-name: org.mariadb.jdbc.Driver
+    type:  com.alibaba.druid.pool.DruidDataSource
+

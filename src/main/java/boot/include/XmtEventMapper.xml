@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="include.XmtEventMapper">
+    <insert id="addEvent" parameterType="include.XmtEvent">      
+       insert into xmtevent (Envet_id,st_date,ed_date,ename,eaddr,price,sts,max_people) 
+       value(#{Envet_id},#{st_date} , #{ed_date} , #{ename},#{eaddr},#{price},#{sts},#{max_people})
+    </insert>
+    <select id="selectEvent"  resultType="include.XmtEvent">
+        select * from xmtevent
+
+    </select>
+   <select id="selectEVTone"  resultType="include.XmtEvent" parameterType="include.XmtEvent">
+        select * from xmtevent where Envet_id= #{Envet_id} 
+
+    </select>
+   
+   <update id="updateMaxPeople" parameterType="include.XmtEvent">
+      update xmtevent 
+        <set>
+          <if test="st_date != null"> st_date = #{st_date},</if>
+           <if test="max_people != null">max_people = #{max_people} </if>
+
+        </set>
+         where Envet_id= #{Envet_id} 
+       
+   
+   </update>
+ 
+ 
+ 
+ </mapper>
