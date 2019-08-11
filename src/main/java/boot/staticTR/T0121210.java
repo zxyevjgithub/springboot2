@@ -1,6 +1,9 @@
 package boot.staticTR;
 
+import boot.connAPI.HyController;
 import com.alibaba.fastjson.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -8,12 +11,17 @@ import java.util.Date;
 // 交易描述  交易不能设计成多例，否则并发太多内存会被撑爆，可以这样设计。
 //  多线程
 
+@Transactional
+
 public class T0121210 implements Cloneable {
     public  static  final   String tr_code = "0121210";
     public  static  final   String tr_name =  "full redemption";
     public  static  Date eff_date ;
     public  static  Date end_date ;
     public  static  final  String run_mode = "D";
+
+    @Autowired
+    HyController hyController;
 
 
     public  String  process( String  inPut){

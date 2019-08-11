@@ -2,6 +2,7 @@ package boot.connAPI;
 
 
 import boot.Service.AccountModel;
+import boot.accountEngin.ThreadImpl;
 import boot.include.User;
 import boot.include.UserMapper;
 import boot.pojo.EwaFactor;
@@ -11,6 +12,7 @@ import com.alibaba.fastjson.JSONAware;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,16 +22,16 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 @RestController
-
+@Transactional
 @RequestMapping("/DD")
 public class DdController {
     //@Autowired
     //T0121210 t0121210; //注册交易实体
     @Autowired
-    ItmNoGroup aaa;
+    ItmNoGroup itmNoGroup;
 
-    @Autowired
-    AccountModel accountModel;
+    //@Autowired
+   // AccountModel accountModel;
 
     @Autowired
     SpringU springU;
@@ -37,12 +39,20 @@ public class DdController {
     @Autowired
     UserMapper userMapper;
 
+    @Autowired
+    ThreadImpl threadimpl;
+
 
     @RequestMapping("/")
     public @ResponseBody  String root(){
            return "error" ;
     }
 
+    @RequestMapping("/AVC")
+    public  String procc(){
+        throw new RuntimeException("AAAA");
+
+    }
 
     @RequestMapping(value = "/{tr_code}",method = RequestMethod.POST)
     public @ResponseBody  String process(@PathVariable String tr_code, HttpServletRequest req) throws Exception {
@@ -110,51 +120,27 @@ public class DdController {
        // AccountModel accountModel = new AccountModel();
           EwaFactor ewaFactor = new  EwaFactor(true,false,false,"ZZ",
                   "CAAC","741000041002",2200l,"4310800","74100050");
-        accountModel.genVwa(ewaFactor,aaa);
-
-
-//        JsonReader reader = new JsonReader(new StringReader(jb.toString()));
-//         try {
-//             reader.beginObject();
-//                while (reader.hasNext() ){
-//                    String tmp = reader.nextName();
-//                    if(tmp.equals("IAccount")){
-//                        reader.beginObject();
-//                        while ( reader.hasNext()){
-//                            if ( reader.nextString().equals("ac_no") ){
-//                                System.out.println("sfsdfsdfs");
-//                            }
-//                            if ( reader.nextString().equals("prd_cd") ){
-//                                System.out.println("sfsdfsdfs");
-//                            }
-//                            if ( reader.nextString().equals("ccy") ){
-//                                System.out.println("sfsdfsdfs");
-//                            }
-//                        }
-//                        reader.endObject();
-//                    }
-//                    if(tmp.equals("ICino")){}
-//
-//
-//                }
-//
-//
-//
-//             reader.endObject();
-//         }catch ( RuntimeException e){
-//
-//             e.printStackTrace();
-//         }
-
-
-
-
+        AccountModel accountModel = new AccountModel(ewaFactor);
+        threadimpl.exxcute(accountModel);
 
 
 
 
         //String msg = tr.pprocess();
         return "SFSFS";
+    }
+
+
+    public static void main(String[] args) throws ClassNotFoundException {
+
+        Annotation[] declaredAnnotations = Class.forName("boot.staticTR." + "T0121210").getDeclaredAnnotations();
+        System.out.println(  declaredAnnotations );
+
+        Class<? extends Class> aClass = Class.forName("boot.staticTR." + "T0121210").getClass();
+        System.out.println( aClass);
+
+
+
     }
 
 }

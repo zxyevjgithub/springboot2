@@ -34,7 +34,7 @@
           <result  column="order_sts"  property="order.order_sts"  />
           <result  column="time_stmp"  property="order.time_stmp"  />
               
-              <result column="envet_id"  	property="event.envet_id"/>
+              <result column="envet_id"  property="event.envet_id"/>
               <result column="st_date"  property="event.st_date"/>
               <result column="ed_date"  property="event.ed_date"/>
               <result column="ename"  	property="event.ename"/>

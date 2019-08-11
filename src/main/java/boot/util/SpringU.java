@@ -9,20 +9,20 @@ import org.springframework.stereotype.Controller;
 @Component
 public class SpringU implements ApplicationContextAware {
 
-    private  ApplicationContext  applicationContext;
+     private  static  ApplicationContext  applicationContext;
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
     }
 
-    public Object getBean(String name){
+    public  static Object   getBean(String name){
 
-        return  this.applicationContext.getBean(name);
+        return   applicationContext.getBean(name);
     }
 
     public <T> T  getBean(String name,Class<T> t){
 
-        return  this.applicationContext.getBean(name,t);
+        return    applicationContext.getBean(name,t);
     }
 
 

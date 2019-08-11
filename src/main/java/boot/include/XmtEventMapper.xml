@@ -2,6 +2,10 @@
  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="include.XmtEventMapper">
+    <cache  eviction="FIFO">
+
+
+    </cache>
     <insert id="addEvent" parameterType="include.XmtEvent">      
        insert into xmtevent (Envet_id,st_date,ed_date,ename,eaddr,price,sts,max_people) 
        value(#{Envet_id},#{st_date} , #{ed_date} , #{ename},#{eaddr},#{price},#{sts},#{max_people})
